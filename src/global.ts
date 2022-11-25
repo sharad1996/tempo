@@ -10,6 +10,9 @@ import {createGlobalStyle} from "styled-components"
     }
     #root{
         margin:0 auto;
+        background-color: #f5f5f5;
     }
-    
+    a{
+        text-decoration: none !important;
+    }
  `

@@ -1,12 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { getTeamsData } from "../api";
 import LinkData from './LinkData'
+import styled from 'styled-components'
 
 
 type Teams = {
   id: string,
   name : string 
 }
+
+const Container = styled.div`
+display : flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+}
+`
+
+const Heading = styled.h1``
+const SearchContainer = styled.div`
+padding : 20px;
+`
+const SearchInput = styled.input`
+height: 23px;
+width:250px;
+`
+const TeamsContainer = styled.div`display: flex;
+flex-wrap: wrap;
+justify-content: space-around;
+    gap: 20px;
+    
+    `
 
 export default function Dashboard() {
   const [teams,setTeams] = useState<Teams[]>([])
@@ -30,17 +55,19 @@ export default function Dashboard() {
  },[searchText,teams])
 
  console.log('teamdata',teams)
- return (<> <div>Dashboard</div>
-  <div> 
-    <input name='searchText' value={searchText} onChange={(e)=>{setSearchText(e.target.value)}}/>
-    <button onClick={handleSearch}>Search</button>
-  </div>
+ return (<Container> 
+  <Heading>Dashboard</Heading>
+  <SearchContainer> 
+    <SearchInput name='searchText' value={searchText} placeholder='Search...' onChange={(e)=>{setSearchText(e.target.value)}}/>
+    
+  </SearchContainer>
+  <TeamsContainer>
   { 
   filterTeams && filterTeams.map(team=> <LinkData key={team.id} id={team.id} name={team.name}/>) 
   
    }
-  
-  </>)
+  </TeamsContainer>
+  </Container>)
 }
 
 
