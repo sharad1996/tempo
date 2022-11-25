@@ -1,10 +1,11 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import React from "react";
+import { Link } from "react-router-dom";
 
-export default function LinkData (props:any){
-  return <div>
-  <Link to={'/team/'+props.id}>
-  {props.name}
-  </Link>
-  </div>
+export default function LinkData(props: any) {
+  const path = props.user ? "/user/" : "/team/";
+  return (
+    <div>
+      <Link to={path + props.id}>{props.name}</Link>
+    </div>
+  );
 }
