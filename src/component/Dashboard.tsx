@@ -23,8 +23,8 @@ const SearchContainer = styled.div`
 padding : 20px;
 `
 const SearchInput = styled.input`
-height: 23px;
-width:250px;
+height: 30px;
+width:300px;
 `
 const TeamsContainer = styled.div`display: flex;
 flex-wrap: wrap;
@@ -59,9 +59,10 @@ export default function Dashboard() {
   <Heading>Dashboard</Heading>
   <SearchContainer> 
     <SearchInput name='searchText' value={searchText} placeholder='Search...' onChange={(e)=>{setSearchText(e.target.value)}}/>
-    
   </SearchContainer>
+  <Heading>Teams</Heading>
   <TeamsContainer>
+    
   { 
   filterTeams && filterTeams.map(team=> <LinkData key={team.id} id={team.id} name={team.name}/>) 
   

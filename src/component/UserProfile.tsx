@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import FetchData from "./UserLink";
+import styled from 'styled-components'
 
 type dataType = {
   id: string;
@@ -10,6 +10,41 @@ type dataType = {
   avatarUrl: string;
   location: string;
 };
+
+
+const Card = styled.div`  
+  width: 450px;
+  height: 250px;
+  text-align: center;
+  padding: 20px;
+  border-radius: 3px;
+  background-color: white;
+  box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
+  position: relative;
+  overflow: hidden;
+ 
+`
+const ProfileContainer = styled.div`
+display:flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+`
+ const ProfileImage =styled.img` 
+    border-radius: 50%;
+    width: 120px;
+height: 120px;
+`
+  const Title = styled.h1`  font-size: 20px `
+  const Profileinfo =styled.div`
+    padding: 0px 20px;
+   `
+   const Location = styled.h3` font-size: 1.2em;
+        color: $maincolor;
+        font-style: italic;
+    `
+  
+
 
 export default function UserProfile() {
   const [data, setData] = useState<dataType>();
@@ -31,10 +66,12 @@ export default function UserProfile() {
   }, []);
 
   return (
-    <div>
-      <img alt={data?.displayName + " Img"} src={data?.avatarUrl} />
-      <h1>{data?.displayName}</h1>
-      <h2>{data?.location}</h2>
-    </div>
+    <ProfileContainer>
+    <Card>
+      <ProfileImage alt={data?.displayName + " Img"} src={ '/blank_User.jpeg' } />
+      <Title>User Name : {data?.displayName}</Title>
+      <Location>Location : {data?.location}</Location>
+    </Card>
+    </ProfileContainer>
   );
 }
