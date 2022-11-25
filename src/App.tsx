@@ -1,9 +1,9 @@
 import React from "react";
-import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Dashboard from "./component/Dashboard";
 import TeamDetail from "./component/TeamDetail";
 import UserProfile from "./component/UserProfile";
+
 
 function App() {
   return (
