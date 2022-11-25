@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import {
   Card,
+  Container,
   ProfileContainer,
   ProfileImage,
   Title,
   Location,
 } from "./Styles";
 import { fetchDataById } from "../../api";
+import { Spinner } from "../Common/Styles";
 
 type UserDetailsType = {
   id: string;
@@ -36,6 +38,7 @@ export default function UserDeatils() {
     fetchUserName(id);
   }, []);
 
+  // CDN images is not working that's why we used some default image.
   return (
     <ProfileContainer>
       <Card>
@@ -43,8 +46,16 @@ export default function UserDeatils() {
           alt={data?.displayName + " Img"}
           src={"/blank_User.jpeg"}
         />
-        <Title>User Name : {data?.displayName}</Title>
-        <Location>Location : {data?.location}</Location>
+        <Container>
+          {!data ? (
+            <Spinner />
+          ) : (
+            <>
+              <Title>{data?.displayName}</Title>
+              <Location>{data?.location}</Location>
+            </>
+          )}
+        </Container>
       </Card>
     </ProfileContainer>
   );

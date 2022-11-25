@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchDataById } from "../../api";
 import Users from "../Users";
+import { Spinner } from "../Common/Styles";
+import { Container } from "./Styles";
 
 type TeamDetailType = {
   id: string;
@@ -29,13 +31,17 @@ export default function TeamDetails() {
   }, []);
 
   return (
-    <>
+    <Container>
       <h1>{data?.name}</h1>
       <div>
-        {data?.teamMemberIds.map((id: any) => {
-          return <Users key={id} id={id} />;
-        })}
+        {!data?.teamMemberIds?.length ? (
+          <Spinner />
+        ) : (
+          data?.teamMemberIds?.map((id: any) => {
+            return <Users key={id} id={id} />;
+          })
+        )}
       </div>
-    </>
+    </Container>
   );
 }

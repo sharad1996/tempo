@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchData } from "../../api";
+import { Spinner } from "../Common/Styles";
 import LinkData from "../Common/LinkData";
 import {
   Container,
@@ -54,10 +55,13 @@ export default function Dashboard() {
       </SearchContainer>
       <Heading>Teams</Heading>
       <TeamsContainer>
-        {filterTeams &&
-          filterTeams.map((team) => (
+        {!filterTeams?.length ? (
+          <Spinner />
+        ) : (
+          filterTeams?.map((team) => (
             <LinkData key={team.id} id={team.id} name={team.name} />
-          ))}
+          ))
+        )}
       </TeamsContainer>
     </Container>
   );
