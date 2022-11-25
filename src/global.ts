@@ -11,4 +11,5 @@ import {createGlobalStyle} from "styled-components"
     #root{
         margin:0 auto;
     }
+    
  `
